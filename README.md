@@ -2,8 +2,6 @@
 
 <hr/>
 
-<hr>
-
 <h2 id="toc">📌 Table of Contents</h2>
 <ul>
   <li><a href="#overview">1. Project Overview</a></li>
