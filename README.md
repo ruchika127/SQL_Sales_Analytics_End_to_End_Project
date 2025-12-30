@@ -40,7 +40,7 @@ following real-world data warehousing and analytics best practices.
 </ul>
 
 <p><strong>🎯This project answers:</strong><br/>
-Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?
+<em>Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?</em>
 </p>
 
 <hr/>
