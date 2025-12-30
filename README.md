@@ -1,46 +1,37 @@
-# SQL_Sales_Analytics_End_to_End_Project
-Building a modern data warehouse using mySQL, including ETL, data modeling and advanced analytics with business improvement strategies.
-
 <h1>📊 Sales Analytics & Customer Intelligence — End-to-End SQL Project</h1>
 
-<h2>1. Project Overview</h2>
+<hr>
+
+<h2 id="toc">📌 Table of Contents</h2>
+<ul>
+  <li><a href="#overview">1. Project Overview</a></li>
+  <li><a href="#problem">2. Problem Statement</a></li>
+  <li><a href="#repo">3. Repository Structure</a></li>
+  <li><a href="#dataset">4. Dataset & Source Systems</a></li>
+  <li><a href="#modeling">5. Data Modelling & Architecture</a></li>
+  <li><a href="#eda">6. Exploratory Data Analysis</a></li>
+  <li><a href="#insights">7. Key Insights</a></li>
+  <li><a href="#recommendations">8. Business Recommendations</a></li>
+  <li><a href="#skills">9. Tools & Skills Demonstrated</a></li>
+</ul>
+
+<hr>
+
+<h2 id="overview">1. Project Overview</h2>
 <p>
-A comprehensive end-to-end sales analytics project that transforms raw transactional data
-from CRM and ERP systems into actionable business insights using SQL.
+A comprehensive <b>end-to-end sales analytics project</b> that transforms raw transactional data 
+from CRM and ERP systems into <b>actionable business insights using SQL</b>.
 </p>
+
 <p>
-A star-schema data warehouse was designed, cleaned, and queried to build analytical views,
+A <b>star-schema data warehouse</b> was designed, cleaned, and queried to build analytical views, 
 following real-world data warehousing and analytics best practices.
 </p>
 
-<h2>📁 Repository Structure</h2>
-<pre>
-SQL_Sales_Analytics_End_to_End_Project/
-│
-├── datasets/
-│   ├── crm_customers_raw.csv
-│   ├── crm_products_raw.csv
-|   ├── crm_sales_raw.csv
-|   ├── erp_category_raw.csv
-|   ├── erp_customer_raw.csv
-│   └── erp_location_raw.csv
-│
-├── Scripts/
-│   ├── 01_Clean_Layer_ddl.sql
-│   ├── 02_Data_Cleaning_etl.sql
-│   ├── 03_Modelling_Views.sql
-│   └── 04_EDA_insights.sql
-│
-├── diagrams/
-│   ├── Data_flow.png
-│   ├── Star_schema.png
-│
-├── README.md
-└── LICENSE
-</pre>
+<hr>
 
-<h2>🎯 Problem Statement</h2>
-<p>The Bikes Data Sales Mart business faces challenges in:</p>
+<h2 id="problem">2. 🎯 Problem Statement</h2>
+<p>The business faces challenges in:</p>
 <ul>
   <li>Understanding revenue concentration and category dependence</li>
   <li>Identifying high-value customers vs one-time buyers</li>
@@ -50,161 +41,183 @@ SQL_Sales_Analytics_End_to_End_Project/
   <li>Aligning marketing, retention, and product strategy with data</li>
 </ul>
 
-<p><strong>This project answers:</strong><br>
-Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?
+<p><b>This project answers:</b></p>
+<p>
+<i>Where is revenue coming from, who is generating it, what is driving churn, 
+and how can growth be made sustainable?</i>
 </p>
 
-<h2>3. Dataset & Source Systems</h2>
+<hr>
 
-![Data flow Diagram](./diagrams/Data_flow.jpg)
-<h3>Source Systems (Raw Tables)</h3>
+<h2 id="repo">3. 📁 Repository Structure</h2>
+
+<pre>
+Sales-Analytics-SQL/
+│
+├── Datasets/
+│   └── Raw_Data/
+│
+├── Scripts/
+│   ├── 01_Clean_Layer_ddl.sql
+│   ├── 02_Data_Cleaning_etl.sql
+│   ├── 03_Modelling_Views.sql
+│   └── 04_EDA_insights.sql
+│
+├── Diagrams/
+│   ├── Data_Flow.png
+│   └── Star_Schema.png
+│
+├── Images/
+│   ├── eda_q1.png
+│   ├── eda_q2.png
+│   └── churn_analysis.png
+│
+└── README.md
+</pre>
+
+<p>
+<b>Note:</b> Images (result grids, diagrams) must be committed to GitHub inside an <code>Images/</code> 
+or <code>Diagrams/</code> folder to render correctly.
+</p>
+
+<hr>
+
+<h2 id="dataset">4. Dataset & Source Systems</h2>
+
 <ul>
-  <li><strong>CRM:</strong> customer demographics, product, sales</li>
-  <li><strong>ERP:</strong> customer, location, category</li>
+  <li><b>Source Systems:</b> CRM & ERP</li>
+  <li><b>Granularity:</b> Order-line level</li>
+  <li><b>Initial Tables:</b> 6 raw tables</li>
+  <li><b>Final Analytical Layer:</b> 3 clean, joined views</li>
+</ul>
+
+<p><b>Data Flow Overview:</b></p>
+<img src="Diagrams/Data_Flow.png" alt="Data Flow Diagram" width="700">
+
+<hr>
+
+<h2 id="modeling">5. Data Modelling & Architecture</h2>
+
+<h3>5.1 Clean Layer DDL</h3>
+<p>
+Defines clean, standardized tables for analytics.
+</p>
+<p>
+🔗 <a href="Scripts/01_Clean_Layer_ddl.sql">Clean Layer DDL Script</a>
+</p>
+
+<h3>5.2 Data Cleaning & ETL</h3>
+<ul>
+  <li>Standardized date formats</li>
+  <li>Handled missing values and duplicates</li>
+  <li>Normalized categorical fields</li>
+  <li>Derived sales and pricing metrics</li>
 </ul>
 
 <p>
-<strong>Granularity:</strong> Order-line level.<br>
-Data cleaned into 6 tables and further transformed into 3 core analytical views.
+🔗 <a href="Scripts/02_Data_Cleaning_etl.sql">Data Cleaning & ETL Script</a>
 </p>
 
-<h2>4. Data Modelling & Architecture</h2>
-
-<h3>4.1 Clean Layer DDL</h3>
-<p>
-Defined standardized clean-layer table structures.
-(<em>See <code>01_Clean_Layer_ddl.sql</code></em>)
-  
-[Clean Layer DDL](./Scripts/01_Clean_Layer_ddl.sql)
-
-</p>
-
-<h3>4.2 Data Cleaning & ETL</h3>
-<p>
-Raw data was transformed and loaded into the clean layer.
-(<em>See <code>02_Data_Cleaning_etl.sql</code></em>)
-</p>
+<h3>5.3 Analytical Views & Star Schema</h3>
 <ul>
-  <li>Standardized date formats and handled missing values</li>
-  <li>Removed duplicates and nulls using validation checks</li>
-  <li>Normalized gender and marital status fields</li>
-  <li>Derived sales amount field</li>
-  <li>Ensured consistent customer and product identifiers</li>
+  <li>Fact table built using surrogate keys</li>
+  <li>Dimension tables joined via star schema</li>
+  <li>Views abstract complexity and ensure reusability</li>
 </ul>
-
-<h3>4.3 Analytical Views</h3>
-<p>(<em>See <code>03_Modelling_Views.sql</code></em>)</p>
-<ul>
-  <li>Star schema design to simplify analysis and improve query readability</li>
-  <li>Fact table built using surrogate keys from dimension tables</li>
-  <li>Entity relationships enforced during joins</li>
-  <li>Views used to abstract complexity and ensure reusability</li>
-</ul>
-
-<p><strong>Core Views:</strong></p>
-<ul>
-  <li><code>fact_sales</code></li>
-  <li><code>dim_customers</code></li>
-  <li><code>dim_products</code></li>
-</ul>
-
-<p><em>![Star schema](diagrams/Star_schema.png)</em></p>
-
-<h2>5. Exploratory Data Analysis</h2>
-<p>(<em>See <code>04_EDA_insights.sql</code></em>)</p>
 
 <p>
-Highlights:
+🔗 <a href="Scripts/03_Modelling_Views.sql">Analytical Views</a>
 </p>
+
+<img src="Diagrams/Star_Schema.png" alt="Star Schema Diagram" width="700">
+
+<hr>
+
+<h2 id="eda">6. Exploratory Data Analysis</h2>
+
+<p>
+The EDA answers <b>17 business-driven analytical questions</b> across revenue, customers,
+products, churn, acquisition, and retention.
+</p>
+
+<p>
+🔗 <a href="Scripts/04_EDA_insights.sql">Full EDA SQL File</a>
+</p>
+
+<h4>Example Question Format</h4>
+
+<pre><code>
+-- Q. What customer segments drive the majority of revenue?
+SELECT ...
+</code></pre>
+
+<img src="Images/eda_q1.png" alt="EDA Result Grid Example" width="700">
+
+<p><i>Insight: VIP customers contribute disproportionate revenue despite smaller size.</i></p>
+
+<hr>
+
+<h2 id="insights">7. 📌 Key Insights</h2>
+
+<h3>Revenue & Products</h3>
 <ul>
-  <li>Q. Generate a report that summarizes key business metrics (sales, orders, customers, products).</li>
-  <li>
-    
-```sql
-SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
-UNION ALL
-SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
-UNION ALL
-SELECT	'Duration_in_months', TIMESTAMPDIFF(MONTH, MIN(order_date), MAX(order_date)) FROM fact_sales
-UNION ALL
-SELECT 'Total Sales', SUM(sales_amount) FROM fact_sales
-UNION ALL
-SELECT 'Total Quantity', SUM(quantity) FROM fact_sales
-UNION ALL
-SELECT 'Average Price', ROUND(AVG(price),2) FROM fact_sales
-UNION ALL
-SELECT 'Total Orders', COUNT(DISTINCT order_number) FROM fact_sales
-UNION ALL
-SELECT 'Total Products', COUNT(DISTINCT product_key) FROM dim_products
-UNION ALL
-SELECT 'Total Customers', COUNT(*) FROM dim_customers;
-```
-</li>
-  <li>Result grid visualization</li>
-  <li>Insight: Spans 36 months duration with '18484' customers and total sales revenue 'Total Sales', '29355840' across 3 categories (Bikes,apparel, accessories).</li>
+  <li>🚲 Bikes contribute ~96% of total revenue — extreme category dependence</li>
+  <li>📉 Accessories & apparel drive acquisition but minimal revenue</li>
+  <li>📊 2013 peak year; 2014 shows market-wide contraction</li>
 </ul>
 
-<h3>Key Insights</h3>
-
-<h4>Business Overview & Product Trends</h4>
+<h3>Customer Segmentation</h3>
 <ul>
-  <li>🚲 Bikes contribute ~96% of total revenue, indicating extreme dependence on high-ticket products</li>
-  <li>📉 Accessories and Apparel drive acquisition but contribute marginal revenue</li>
-  <li>📊 2013 was the strongest year across nearly all products; 2014 shows a broad market contraction</li>
+  <li>👥 ~85% of customers are New buyers; only ~9% become VIPs</li>
+  <li>💎 VIPs (~1.6K) generate revenue comparable to ~14.8K New customers</li>
+  <li>🔁 62% customers are one-time buyers</li>
 </ul>
 
-<h4>Customer Segmentation & Revenue Distribution</h4>
+<h3>Churn & Retention</h3>
 <ul>
-  <li>👥 ~85% of customers are New buyers, while only ~9% become VIPs</li>
-  <li>💎 VIP customers (~1.6K) generate nearly the same revenue as ~14.8K New customers due to very high AOV</li>
-  <li>🔁 62% of customers are one-time buyers, indicating weak retention</li>
-  <li>🎯 Customers aged 40+ contribute the majority of revenue with higher AOVs</li>
+  <li>⚠️ At-Risk customers generate the highest revenue</li>
+  <li>🔒 Active customers form the most stable revenue base</li>
+  <li>🎯 Churn is frequency-driven, not value-driven</li>
 </ul>
 
-<h4>Churn & Retention</h4>
+<h3>Acquisition & Cohorts</h3>
 <ul>
-  <li>⚠️ At-Risk customers generate the highest revenue but show declining engagement</li>
-  <li>🔒 Active customers form a small but extremely stable revenue base</li>
-  <li>🎯 Churn is driven by low frequency rather than low customer value</li>
+  <li>📈 Acquisition surged in 2012–2013; retention lagged</li>
+  <li>🔄 Seasonal retention spikes in months 7, 8, and 12</li>
+  <li>🧩 Hybrid base: one-time buyers + loyal enthusiasts</li>
 </ul>
 
-<h4>Acquisition & Cohorts</h4>
+<h3>Product–Customer Interaction</h3>
 <ul>
-  <li>📈 Customer acquisition surged in 2012–2013, but retention did not scale</li>
-  <li>🔄 Seasonal retention recovery observed in months 7, 8, and 12</li>
-  <li>🧩 The business serves a hybrid customer base:
-    <ul>
-      <li>One-time mass buyers</li>
-      <li>Loyal cycling enthusiasts</li>
-    </ul>
-  </li>
-  <li>🧠 Profitability depends more on customer quality than customer quantity</li>
+  <li>🧲 Low-cost accessories dominate acquisition</li>
+  <li>💰 High-priced bikes are mostly one-time purchases</li>
+  <li>🔄 Repeat purchases are rare across products</li>
 </ul>
 
-<h4>Product–Customer Interaction</h4>
-<ul>
-  <li>🧲 Low-cost accessories dominate acquisition but convert poorly into long-term value</li>
-  <li>💰 High-priced bikes are mostly one-time purchases but drive revenue</li>
-  <li>🔄 Repeat purchases are rare across most products</li>
-</ul>
+<hr>
 
-<h2>7. Business Recommendations</h2>
+<h2 id="recommendations">8. 📈 Business Recommendations</h2>
 <ul>
   <li>Prioritize win-back campaigns for At-Risk high-value customers</li>
-  <li>Design structured upsell paths from low-cost acquisition products</li>
-  <li>Improve onboarding journeys for new customers</li>
-  <li>Rationalize low-performing products to improve margins</li>
-  <li>Invest in loyalty programs for Active and VIP customers</li>
+  <li>Create structured upsell paths from accessories to bikes</li>
+  <li>Improve onboarding for new customers</li>
+  <li>Rationalize low-performing products</li>
+  <li>Invest in loyalty programs for Active & VIP customers</li>
 </ul>
 
-<h2>8. Tools & Skills Demonstrated</h2>
+<hr>
+
+<h2 id="skills">9. 🛠 Tools & Skills Demonstrated</h2>
 <ul>
   <li>SQL (MySQL)</li>
-  <li>CTEs, Window Functions, Complex Joins, CASE Statements</li>
-  <li>Data Warehousing & Star Schema Design</li>
+  <li>CTEs & Window Functions</li>
+  <li>Star Schema & Data Warehousing</li>
   <li>Time-Series Analysis</li>
   <li>RFM & Cohort Analysis</li>
   <li>Business-Driven EDA</li>
   <li>KPI & Metric Engineering</li>
-  <li>Analytics-Ready View Creation</li>
 </ul>
+
+<hr>
+
+<p><b>⭐ If you like this project, feel free to star the repository!</b></p>
