@@ -129,7 +129,7 @@ UNION ALL
 SELECT 'Total Customers', COUNT(*) FROM dim_customers;
 ```
 
-<img src="diagrams/query_results/Q1.png" width="350"/>
+<img src="diagrams/query_results/Q1.png" width="230"/>
 <p><strong>Insight:</strong> Dataset spans 36 months with ~18.5K customers and €29.3M in sales.</p>
 
 <hr/>
@@ -216,7 +216,7 @@ churn_base AS (
 	GROUP BY churn_status, frequency_status
 	ORDER BY total_customer DESC;
 ```
-<img src="diagrams/query_results/Q4.png" width="400"/>
+<img src="diagrams/query_results/Q4.png" width="600"/>
 <p><strong>Insight:</strong> Churn is extremely low. Most customers are New + One-Time buyers, while the At-Risk + Occasional segment 
 contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</p>
 
@@ -279,7 +279,7 @@ FROM ranked_products
 WHERE rnk <= 5
 ORDER BY churn_status, rnk;
 ```
-<img src="diagrams/query_results/Q5.png" width="400"/>
+<img src="diagrams/query_results/Q5.png" width="500"/>
 <p><strong>Insight:</strong> Classic “entry funnel” behavior, Low-cost accessories (e.g., Water Bottle – 30 oz., Tire Tubes, Patch Kits) are the strongest acquisition drivers for Active and At-Risk customers but fail to retain them long-term, while high-priced bikes primarily attract one-time buyers who quickly churn.
 </p>
 
