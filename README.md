@@ -88,7 +88,7 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 </ul>
 
 <h3>4.3 Analytical Views</h3>
-<p><a href="Scripts/03_Modelling_Views.sql">View SQL</a></p>
+<p><a href="Scripts/03_Modelling_views.sql">View SQL</a></p>
 <ul>
   <li>Star schema design</li>
   <li>Fact table built using surrogate keys</li>
