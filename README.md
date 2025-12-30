@@ -55,6 +55,7 @@ Where is revenue coming from, who is generating it, what is driving churn, and h
 </p>
 
 <h2>3. Dataset & Source Systems</h2>
+
 ![Data flow Diagram](./diagrams/Data_flow.jpg)
 <h3>Source Systems (Raw Tables)</h3>
 <ul>
@@ -73,6 +74,7 @@ Data cleaned into 6 tables and further transformed into 3 core analytical views.
 <p>
 Defined standardized clean-layer table structures.
 (<em>See <code>01_Clean_Layer_ddl.sql</code></em>)
+  
 [Clean Layer DDL](./Scripts/01_Clean_Layer_ddl.sql)
 
 </p>
@@ -117,7 +119,8 @@ Highlights:
 <ul>
   <li>Q. Generate a report that summarizes key business metrics (sales, orders, customers, products).</li>
   <li>
-    ```SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
+    ```sql
+    SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
 UNION ALL
 SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
 UNION ALL
