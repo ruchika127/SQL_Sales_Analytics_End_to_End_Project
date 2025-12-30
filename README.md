@@ -1,6 +1,6 @@
 # SQL_Sales_Analytics_End_to_End_Project
 Building a modern data warehouse using mySQL, including ETL, data modeling and advanced analytics with business improvement strategies.
-
+[link](https://www.youtube.com/watch?v=uvTcd-VlM64)
 <h1>📊 Sales Analytics & Customer Intelligence — End-to-End SQL Project</h1>
 
 <h2>1. Project Overview</h2>
