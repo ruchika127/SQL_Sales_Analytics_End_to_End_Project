@@ -2,6 +2,24 @@
 
 <hr/>
 
+<hr>
+
+<h2 id="toc">📌 Table of Contents</h2>
+<ul>
+  <li><a href="#overview">1. Project Overview</a></li>
+  <li><a href="#problem">2. Problem Statement</a></li>
+  <li><a href="#repository">3. Repository Structure</a></li>
+  <li><a href="#dataset">4. Dataset & Source Systems</a></li>
+  <li><a href="#modeling">5. Data Modelling & Architecture</a></li>
+  <li><a href="#eda">6. Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#eda-questions">7. EDA Question Highlights</a></li>
+  <li><a href="#insights">8. Key Insights</a></li>
+  <li><a href="#recommendations">9. Business Recommendations</a></li>
+  <li><a href="#tools">10. Tools & Skills Demonstrated</a></li>
+</ul>
+
+<hr>
+
 <h2 id="overview">1. Project Overview</h2>
 <p>
 A comprehensive end-to-end sales analytics project that transforms raw transactional data from
