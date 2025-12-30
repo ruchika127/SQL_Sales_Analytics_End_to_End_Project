@@ -1,5 +1,4 @@
 <h1>📊 Sales Analytics & Customer Intelligence — End-to-End SQL Project</h1>
-
 <hr/>
 
 <h2 id="toc">📌 Table of Contents</h2>
