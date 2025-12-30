@@ -55,7 +55,7 @@ Where is revenue coming from, who is generating it, what is driving churn, and h
 </p>
 
 <h2>3. Dataset & Source Systems</h2>
-<p><em>![Data flow Diagram](diagrams/Data_flow.png)</em></p>
+![Data flow Diagram](./diagrams/Data_flow.png)
 <h3>Source Systems (Raw Tables)</h3>
 <ul>
   <li><strong>CRM:</strong> customer demographics, product, sales</li>
@@ -73,7 +73,7 @@ Data cleaned into 6 tables and further transformed into 3 core analytical views.
 <p>
 Defined standardized clean-layer table structures.
 (<em>See <code>01_Clean_Layer_ddl.sql</code></em>)
-[Clean Layer DDL](Scripts/01_Clean_Layer_ddl.sql)
+[Clean Layer DDL](./Scripts/01_Clean_Layer_ddl.sql)
 
 </p>
 
