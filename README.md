@@ -119,8 +119,9 @@ Highlights:
 <ul>
   <li>Q. Generate a report that summarizes key business metrics (sales, orders, customers, products).</li>
   <li>
-    ```sql
-    SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
+    
+```sql
+SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
 UNION ALL
 SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
 UNION ALL
@@ -137,6 +138,7 @@ UNION ALL
 SELECT 'Total Products', COUNT(DISTINCT product_key) FROM dim_products
 UNION ALL
 SELECT 'Total Customers', COUNT(*) FROM dim_customers;
+```
 </li>
   <li>Result grid visualization</li>
   <li>Insight: Spans 36 months duration with '18484' customers and total sales revenue 'Total Sales', '29355840' across 3 categories (Bikes,apparel, accessories).</li>
