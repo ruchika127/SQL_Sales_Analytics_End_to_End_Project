@@ -1,41 +1,20 @@
 <h1>📊 Sales Analytics & Customer Intelligence — End-to-End SQL Project</h1>
 
-<p>
-A comprehensive end-to-end sales analytics project that transforms raw transactional data
-from CRM and ERP systems into actionable business insights using SQL.
-</p>
+<hr/>
 
+<h2 id="overview">1. Project Overview</h2>
+<p>
+A comprehensive end-to-end sales analytics project that transforms raw transactional data from
+CRM and ERP systems into actionable business insights using SQL.
+</p>
 <p>
 A star-schema data warehouse was designed, cleaned, and queried to build analytical views,
 following real-world data warehousing and analytics best practices.
 </p>
 
-<hr>
+<hr/>
 
-<h2 id="toc">📌 Table of Contents</h2>
-<ul>
-  <li><a href="#overview">1. Project Overview</a></li>
-  <li><a href="#repo">2. Repository Structure</a></li>
-  <li><a href="#problem">3. Problem Statement</a></li>
-  <li><a href="#dataset">4. Dataset & Source Systems</a></li>
-  <li><a href="#modeling">5. Data Modelling & Architecture</a></li>
-  <li><a href="#eda">6. Exploratory Data Analysis</a></li>
-  <li><a href="#insights">7. Key Insights</a></li>
-  <li><a href="#recommendations">8. Business Recommendations</a></li>
-  <li><a href="#skills">9. Tools & Skills Demonstrated</a></li>
-</ul>
-
-<hr>
-
-<h2 id="overview">1. Project Overview</h2>
-<p>
-This project simulates a real-world analytics workflow where raw data from multiple business
-systems is transformed into a clean analytical model and explored through SQL-driven insights.
-</p>
-
-<hr>
-
-<h2 id="repo">2. 📁 Repository Structure</h2>
+<h2 id="repo-structure">📁 Repository Structure</h2>
 
 <pre>
 SQL_Sales_Analytics_End_to_End_Project/
@@ -59,164 +38,196 @@ SQL_Sales_Analytics_End_to_End_Project/
 └── README.md
 </pre>
 
-<hr>
+<hr/>
 
-<h2 id="problem">3. 🎯 Problem Statement</h2>
-<p>
-The Bikes Sales business faces challenges in:
-</p>
+<h2 id="problem">🎯 Problem Statement</h2>
+<p>The business faces challenges in:</p>
 <ul>
   <li>Understanding revenue concentration and category dependence</li>
   <li>Identifying high-value customers vs one-time buyers</li>
-  <li>Detecting churn risk early using recency and frequency signals</li>
+  <li>Detecting churn risk early using Recency & Frequency</li>
   <li>Evaluating product lifecycle and YoY performance</li>
-  <li>Understanding which products drive acquisition vs long-term value</li>
+  <li>Knowing which products drive acquisition vs long-term value</li>
   <li>Aligning marketing, retention, and product strategy with data</li>
 </ul>
 
-<p><b>This project answers:</b><br>
+<p><strong>This project answers:</strong><br/>
 Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?
 </p>
 
-<hr>
+<hr/>
 
-<h2 id="dataset">4. Dataset & Source Systems</h2>
+<h2 id="dataset">3. Dataset & Source Systems</h2>
+<img src="diagrams/Data_flow.png" alt="Data Flow Diagram" width="800"/>
 
-<img src="diagrams/Data_flow.png" alt="Data Flow Diagram" width="700">
-
-<p><b>Source Systems (Raw tables):</b></p>
 <ul>
-  <li>CRM: customer demographics, product data, sales transactions</li>
-  <li>ERP: customer master, location, product categories</li>
+  <li><strong>CRM:</strong> Customer demographics, products, sales</li>
+  <li><strong>ERP:</strong> Customer, location, category</li>
+  <li><strong>Granularity:</strong> Order-line level</li>
 </ul>
 
 <p>
-<b>Granularity:</b> Order-line level<br>
-<b>Transformation:</b> Raw data cleaned into 6 tables and consolidated into 3 analytical views
+Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 </p>
 
-<hr>
+<hr/>
 
-<h2 id="modeling">5. Data Modelling & Architecture</h2>
+<h2 id="modeling">4. Data Modelling & Architecture</h2>
 
-<h3>5.1 Clean Layer DDL</h3>
-<p>
-Defines standardized schemas and datatypes for analytics-ready tables.
-</p>
-<p>
-🔗 <a href="Scripts/01_Clean_Layer_ddl.sql">01_Clean_Layer_ddl.sql</a>
-</p>
+<h3>4.1 Clean Layer DDL</h3>
+<p><a href="Scripts/01_Clean_Layer_ddl.sql">View SQL</a></p>
 
-<h3>5.2 Data Cleaning & ETL</h3>
-<p>
-Transforms raw data into clean, validated tables.
-</p>
+<h3>4.2 Data Cleaning ETL</h3>
+<p><a href="Scripts/02_Data_Cleaning_etl.sql">View SQL</a></p>
 <ul>
-  <li>Standardized date formats and categorical values</li>
-  <li>Removed duplicates and invalid records</li>
-  <li>Derived sales amount and pricing fields</li>
-  <li>Validated referential integrity</li>
-</ul>
-<p>
-🔗 <a href="Scripts/02_Data_Cleaning_etl.sql">02_Data_Cleaning_etl.sql</a>
-</p>
-
-<h3>5.3 Analytical Views & Star Schema</h3>
-<p>
-A star schema was implemented to simplify analytics and improve query performance.
-</p>
-<ul>
-  <li>fact_sales</li>
-  <li>dim_customers</li>
-  <li>dim_products</li>
+  <li>Standardized date formats and missing values</li>
+  <li>Removed duplicates using validation checks</li>
+  <li>Normalized gender & marital status</li>
+  <li>Derived sales amount and price</li>
+  <li>Ensured consistent identifiers</li>
 </ul>
 
-<p>
-🔗 <a href="Scripts/03_Modelling_Views.sql">03_Modelling_Views.sql</a>
-</p>
-
-<img src="diagrams/Star_schema.png" alt="Star Schema Diagram" width="700">
-
-<hr>
-
-<h2 id="eda">6. Exploratory Data Analysis</h2>
-<p>
-All analytical questions, SQL queries, and business logic are documented in a structured EDA script.
-</p>
-
-<p>
-🔗 <a href="Scripts/04_EDA_insights.sql">04_EDA_insights.sql</a>
-</p>
-
-<p>
-Each question includes:
-</p>
+<h3>4.3 Analytical Views</h3>
+<p><a href="Scripts/03_Modelling_Views.sql">View SQL</a></p>
 <ul>
-  <li>Business question</li>
-  <li>SQL query</li>
-  <li>Result grid snapshot</li>
-  <li>Concise insight for decision-making</li>
+  <li>Star schema design</li>
+  <li>Fact table built using surrogate keys</li>
+  <li>Entity relationships enforced</li>
+  <li>Reusable semantic layer</li>
 </ul>
 
-<hr>
+<img src="diagrams/Star_schema.png" alt="Star Schema" width="800"/>
 
-<h2 id="insights">7. 🔍 Key Insights</h2>
+<hr/>
 
-<h3>Revenue & Product Trends</h3>
+<h2 id="eda">5. Exploratory Data Analysis</h2>
+<p><a href="Scripts/04_EDA_insights.sql">View Full SQL</a></p>
+
+<hr/>
+
+<h2 id="eda-highlights">📌 EDA Question Highlights</h2>
+
+<h3>Q1. Key Business Metrics Overview</h3>
+<pre><code>
+SELECT 'Dataset Start Date' AS Metric, MIN(order_date) FROM fact_sales
+UNION ALL
+SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
+UNION ALL
+SELECT 'Duration_in_months', TIMESTAMPDIFF(MONTH, MIN(order_date), MAX(order_date)) FROM fact_sales
+UNION ALL
+SELECT 'Total Sales', SUM(sales_amount) FROM fact_sales
+UNION ALL
+SELECT 'Total Quantity', SUM(quantity) FROM fact_sales
+UNION ALL
+SELECT 'Average Price', ROUND(AVG(price),2) FROM fact_sales
+UNION ALL
+SELECT 'Total Orders', COUNT(DISTINCT order_number) FROM fact_sales
+UNION ALL
+SELECT 'Total Products', COUNT(DISTINCT product_key) FROM dim_products
+UNION ALL
+SELECT 'Total Customers', COUNT(*) FROM dim_customers;
+</code></pre>
+<img src="diagrams/query_results/Q1.png" width="700"/>
+<p><strong>Insight:</strong> Dataset spans 36 months with ~18.5K customers and €29.3M in sales.</p>
+
+<hr/>
+
+<h3>Q2. Sales Performance Over Time</h3>
+<pre><code>
+SELECT YEAR(order_date), SUM(sales_amount)
+FROM fact_sales
+GROUP BY YEAR(order_date);
+</code></pre>
+<img src="diagrams/query_results/Q2.png" width="700"/>
+<p><strong>Insight:</strong> 2013 peaks; 2014 decline due to early data cutoff. December shows holiday seasonality.</p>
+
+<hr/>
+
+<h3>Q3. Revenue Contribution by Category</h3>
+<pre><code>
+WITH category_sales AS (
+ SELECT p.category, SUM(f.sales_amount) AS total_sales
+ FROM fact_sales f
+ JOIN dim_products p ON f.product_key = p.product_key
+ GROUP BY p.category
+)
+SELECT category, total_sales,
+ROUND(total_sales / SUM(total_sales) OVER() * 100,2) AS pct
+FROM category_sales;
+</code></pre>
+<img src="diagrams/query_results/Q3.png" width="700"/>
+<p><strong>Insight:</strong> Bikes drive ~96% of revenue → high concentration risk.</p>
+
+<hr/>
+
+<h3>Q4. Churn Analysis Using RFM Behavior</h3>
+<img src="diagrams/query_results/Q4.png" width="700"/>
+<p><strong>Insight:</strong> At-Risk customers generate highest revenue but show declining engagement.</p>
+
+<hr/>
+
+<h3>Q5. Acquisition Products by Churn Segment</h3>
+<img src="diagrams/query_results/Q5.png" width="700"/>
+<p><strong>Insight:</strong> Low-cost accessories drive acquisition but fail to retain long-term.</p>
+
+<hr/>
+
+<h2 id="insights">6. Key Insights</h2>
+
+<h3>Revenue & Products</h3>
 <ul>
-  <li>🚲 Bikes contribute ~96% of total revenue, indicating extreme dependence on high-ticket products.</li>
-  <li>📉 Accessories and Apparel drive acquisition but contribute marginal revenue.</li>
-  <li>📊 2013 was the strongest year across nearly all products; 2014 shows broad market contraction.</li>
+  <li>🚲 Bikes contribute ~96% of revenue</li>
+  <li>📉 Accessories drive acquisition but minimal revenue</li>
+  <li>📊 2013 peak followed by market-wide decline</li>
 </ul>
 
-<h3>Customer Segmentation</h3>
+<h3>Customers</h3>
 <ul>
-  <li>👥 ~85% of customers are New buyers, while only ~9% become VIPs.</li>
-  <li>💎 VIP customers (~1.6K) generate nearly the same revenue as ~14.8K New customers.</li>
-  <li>🔁 62% of customers are one-time buyers, indicating weak retention.</li>
+  <li>👥 ~85% customers are New; ~9% VIP</li>
+  <li>💎 VIPs generate revenue comparable to all New buyers</li>
+  <li>🔁 62% one-time buyers</li>
 </ul>
 
 <h3>Churn & Retention</h3>
 <ul>
-  <li>⚠️ At-Risk customers generate the highest revenue but show declining engagement.</li>
-  <li>🔒 Active customers form a small but highly stable revenue base.</li>
-  <li>🎯 Churn is driven by low frequency, not low value.</li>
+  <li>⚠️ At-Risk customers = top win-back opportunity</li>
+  <li>🔒 Active customers are stable but few</li>
+  <li>🎯 Churn is behavioral, not value-driven</li>
 </ul>
 
 <h3>Acquisition & Cohorts</h3>
 <ul>
-  <li>📈 Customer acquisition surged in 2012–2013, but retention did not scale.</li>
-  <li>🔄 Seasonal retention recovery occurs in months 7, 8, and 12.</li>
-  <li>🧩 The business serves both mass one-time buyers and loyal cycling enthusiasts.</li>
+  <li>📈 Acquisition surged in 2012–13</li>
+  <li>🔄 Seasonal retention recovery (Jul, Aug, Dec)</li>
+  <li>🧩 Hybrid customer base: mass buyers + enthusiasts</li>
 </ul>
 
 <h3>Product–Customer Interaction</h3>
 <ul>
-  <li>🧲 Low-cost accessories dominate acquisition.</li>
-  <li>💰 High-priced bikes are mostly one-time purchases, revealing a cross-sell gap.</li>
-  <li>🔄 Repeat purchases are rare across most products.</li>
+  <li>🧲 Low-cost accessories dominate acquisition</li>
+  <li>💰 High-priced bikes are one-time purchases</li>
+  <li>🔄 Repeat purchases are rare</li>
 </ul>
 
-<hr>
+<hr/>
 
-<h2 id="recommendations">8. 📈 Business Recommendations</h2>
+<h2 id="recommendations">7. Business Recommendations</h2>
 <ul>
-  <li>Prioritize win-back campaigns for At-Risk high-value customers</li>
-  <li>Build structured upsell paths from low-cost entry products</li>
-  <li>Improve onboarding journeys for new customers</li>
-  <li>Rationalize low-performing products to improve margins</li>
-  <li>Invest in loyalty programs for Active and VIP customers</li>
+  <li>Target At-Risk high-value customers with win-back campaigns</li>
+  <li>Build upsell paths from accessories to bikes</li>
+  <li>Improve onboarding for new customers</li>
+  <li>Optimize product portfolio</li>
+  <li>Invest in VIP & loyalty programs</li>
 </ul>
 
-<hr>
+<hr/>
 
-<h2 id="skills">9. 🛠 Tools & Skills Demonstrated</h2>
+<h2 id="skills">8. Tools & Skills Demonstrated</h2>
 <ul>
-  <li>SQL (MySQL)</li>
-  <li>CTEs, Window Functions, Complex Joins</li>
-  <li>Star Schema & Data Warehousing</li>
-  <li>Time-Series & Cohort Analysis</li>
-  <li>RFM-based Churn Analysis</li>
-  <li>KPI Engineering & Analytics Views</li>
-  <li>Business-driven Exploratory Analysis</li>
+  <li>MySQL</li>
+  <li>CTEs & Window Functions</li>
+  <li>Star Schema Design</li>
+  <li>Time-Series Analysis</li>
+  <li>RFM & Cohort Analysis</li>
+  <li>Business-Focused EDA</li>
 </ul>
