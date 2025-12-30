@@ -107,10 +107,8 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 
 <h2 id="eda-highlights">📌 EDA Question Highlights</h2>
 
-<h3>Q1. Key Business Metrics Overview</h3>
-<pre><code>
-  </code></pre>
-  
+<h3>Q1. Generate a report that summarizes key business metrics (sales, orders, customers, products).</h3>
+
 ```sql
 SELECT 'Dataset Start Date' AS Metric, MIN(order_date) FROM fact_sales
 UNION ALL
@@ -131,48 +129,159 @@ UNION ALL
 SELECT 'Total Customers', COUNT(*) FROM dim_customers;
 ```
 
-<img src="diagrams/query_results/Q1.png" width="100"/>
+<img src="diagrams/query_results/Q1.png" width="350"/>
 <p><strong>Insight:</strong> Dataset spans 36 months with ~18.5K customers and €29.3M in sales.</p>
 
 <hr/>
 
-<h3>Q2. Sales Performance Over Time</h3>
-<pre><code>
-SELECT YEAR(order_date), SUM(sales_amount)
-FROM fact_sales
-GROUP BY YEAR(order_date);
-</code></pre>
-<img src="diagrams/query_results/Q2.png" width="700"/>
-<p><strong>Insight:</strong> 2013 peaks; 2014 decline due to early data cutoff. December shows holiday seasonality.</p>
+<h3>Q2. How do sales perform over time at yearly and monthly levels? </h3>
+
+```
+SELECT
+	YEAR(order_date) AS order_year,
+	SUM(sales_amount) AS total_sales,
+  COUNT(DISTINCT customer_key) AS total_customer,
+  SUM(quantity) AS total_quantity
+FROM fact_sales 
+WHERE order_date IS NOT NULL
+GROUP BY YEAR(order_date)
+ORDER BY YEAR(order_date);
+```
+<img src="diagrams/query_results/Q2.png" width="400"/>
+<p><strong>Insight:</strong> 2013 peaks; 2014 decline due to early data cutoff. December shows holiday seasonality while
+February is the weakest.</p>
 
 <hr/>
 
-<h3>Q3. Revenue Contribution by Category</h3>
-<pre><code>
+<h3>Q3. Which product categories contribute the most to overall revenue? </h3>
+
+```
 WITH category_sales AS (
- SELECT p.category, SUM(f.sales_amount) AS total_sales
- FROM fact_sales f
- JOIN dim_products p ON f.product_key = p.product_key
- GROUP BY p.category
+  SELECT 
+  	p.category,
+      SUM(f.sales_amount) AS total_sales
+  FROM fact_sales f
+  LEFT JOIN dim_products p
+  	ON f.product_key= p.product_key
+  GROUP BY p.category)
+SELECT
+    category,
+    total_sales,
+    SUM(total_sales) OVER() AS overall_sales,
+    CONCAT(ROUND((total_sales/SUM(total_sales) OVER())*100,2),'%'
+  ) AS percentage_of_total
+FROM category_sales
+ORDER BY total_sales DESC;
+```
+<img src="diagrams/query_results/Q3.png" width="400"/>
+<p><strong>Insight:</strong> Category "Bikes" dominates revenue 96.46% (~28.3M EUR). This creates both opportunity (focus on best-sellers) and risk (high category concentration)</p>
+
+<hr/>
+
+<h3>Q4. Analyse Churn pattern Using Combined RFM (Recency–Frequency–Monetary) behaviour.</h3>
+
+```
+WITH 
+churn_base AS (
+	SELECT 
+		CASE
+			WHEN lifespan_in_months < 3 THEN 'New'
+			WHEN recency_in_months > 12 THEN 'Churned'
+			WHEN recency_in_months BETWEEN 4 AND 12 THEN 'At Risk'
+			ELSE 'Active'
+		END AS churn_status,
+        CASE
+			WHEN total_orders=1 THEN 'One-time'
+            WHEN total_orders BETWEEN 2 AND 3 THEN 'Occasional'
+            ELSE 'Loyal'
+		END AS frequency_status,
+		customer_key,
+		total_sales,
+		total_orders,
+		average_order_value,
+		average_monthly_spend,
+		recency_in_months
+	FROM report_customers
+    )
+	SELECT
+		churn_status,
+        frequency_status,
+        COUNT(DISTINCT customer_key) AS total_customer,
+		SUM(total_sales) AS total_revenue,
+		SUM(total_orders) AS total_orders,
+		ROUND(AVG(average_order_value), 2) AS avg_order_value,
+		ROUND(AVG(average_monthly_spend), 2) AS avg_monthly_spend,
+		ROUND(AVG(recency_in_months), 2) AS avg_recency
+	FROM churn_base
+	GROUP BY churn_status, frequency_status
+	ORDER BY total_customer DESC;
+```
+<img src="diagrams/query_results/Q4.png" width="400"/>
+<p><strong>Insight:</strong> Churn is extremely low. Most customers are New + One-Time buyers, while the At-Risk + Occasional segment 
+contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</p>
+
+<hr/>
+
+<h3>Q5. Which 5 products drive initial customer acquisition across Churn states (Active, At risk, Churned)? </h3>
+
+```
+WITH customer_churn AS (
+    SELECT
+        customer_key,
+        CASE
+            WHEN TIMESTAMPDIFF(MONTH, MAX(order_date), (SELECT MAX(order_date) FROM fact_sales)) > 12 THEN 'Churned'
+            WHEN TIMESTAMPDIFF(MONTH, MAX(order_date), (SELECT MAX(order_date) FROM fact_sales)) BETWEEN 4 AND 12 THEN 'At Risk'
+            ELSE 'Active'
+        END AS churn_status
+    FROM fact_sales
+    GROUP BY customer_key  
+),
+
+  first_purchase AS (
+      SELECT
+          customer_key,
+          MIN(order_date) AS first_order_date
+      FROM fact_sales
+      GROUP BY customer_key
+),
+
+  acquisition_products AS (
+      SELECT
+          c.churn_status,
+          f.product_key,
+          COUNT(DISTINCT f.customer_key) AS acquired_customers,
+          AVG(f.sales_amount / NULLIF(f.quantity,0)) AS avg_selling_price
+      FROM fact_sales f
+      JOIN first_purchase fp
+          ON f.customer_key = fp.customer_key
+         AND f.order_date = fp.first_order_date
+      JOIN customer_churn c
+          ON f.customer_key = c.customer_key
+      GROUP BY c.churn_status, f.product_key
+),
+
+  ranked_products AS (
+      SELECT
+          churn_status,
+          p.product_name,
+          acquired_customers,
+          ROUND(avg_selling_price,2) AS avg_selling_price,
+          RANK() OVER (
+              PARTITION BY churn_status
+              ORDER BY acquired_customers DESC
+          ) AS rnk
+      FROM acquisition_products ap
+      JOIN dim_products p
+          ON ap.product_key = p.product_key
 )
-SELECT category, total_sales,
-ROUND(total_sales / SUM(total_sales) OVER() * 100,2) AS pct
-FROM category_sales;
-</code></pre>
-<img src="diagrams/query_results/Q3.png" width="700"/>
-<p><strong>Insight:</strong> Bikes drive ~96% of revenue → high concentration risk.</p>
-
-<hr/>
-
-<h3>Q4. Churn Analysis Using RFM Behavior</h3>
-<img src="diagrams/query_results/Q4.png" width="700"/>
-<p><strong>Insight:</strong> At-Risk customers generate highest revenue but show declining engagement.</p>
-
-<hr/>
-
-<h3>Q5. Acquisition Products by Churn Segment</h3>
-<img src="diagrams/query_results/Q5.png" width="700"/>
-<p><strong>Insight:</strong> Low-cost accessories drive acquisition but fail to retain long-term.</p>
+SELECT *
+FROM ranked_products
+WHERE rnk <= 5
+ORDER BY churn_status, rnk;
+```
+<img src="diagrams/query_results/Q5.png" width="400"/>
+<p><strong>Insight:</strong> Classic “entry funnel” behavior, Low-cost accessories (e.g., Water Bottle – 30 oz., Tire Tubes, Patch Kits) are the strongest acquisition drivers for Active and At-Risk customers but fail to retain them long-term, while high-priced bikes primarily attract one-time buyers who quickly churn.
+</p>
 
 <hr/>
 
