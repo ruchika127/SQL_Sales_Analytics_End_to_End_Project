@@ -63,7 +63,7 @@ Where is revenue coming from, who is generating it, what is driving churn, and h
 <ul>
   <li><strong>CRM:</strong> Customer demographics, products, sales</li>
   <li><strong>ERP:</strong> Customer, location, category</li>
-  <li><strong>Granularity:</strong> Order-line level</li>
+  <li>Granularity: Order-line level</li>
 </ul>
 
 <p>
@@ -109,6 +109,9 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 
 <h3>Q1. Key Business Metrics Overview</h3>
 <pre><code>
+  </code></pre>
+  
+```sql
 SELECT 'Dataset Start Date' AS Metric, MIN(order_date) FROM fact_sales
 UNION ALL
 SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
@@ -126,8 +129,9 @@ UNION ALL
 SELECT 'Total Products', COUNT(DISTINCT product_key) FROM dim_products
 UNION ALL
 SELECT 'Total Customers', COUNT(*) FROM dim_customers;
-</code></pre>
-<img src="diagrams/query_results/Q1.png" width="700"/>
+```
+
+<img src="diagrams/query_results/Q1.png" width="100"/>
 <p><strong>Insight:</strong> Dataset spans 36 months with ~18.5K customers and €29.3M in sales.</p>
 
 <hr/>
