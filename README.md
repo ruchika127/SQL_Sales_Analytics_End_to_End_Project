@@ -9,10 +9,9 @@
   <li><a href="#dataset">4. Dataset & Source Systems</a></li>
   <li><a href="#modeling">5. Data Modelling & Architecture</a></li>
   <li><a href="#eda">6. Exploratory Data Analysis (EDA)</a></li>
-  <li><a href="#eda-questions">7. EDA Question Highlights</a></li>
-  <li><a href="#insights">8. Key Insights</a></li>
-  <li><a href="#recommendations">9. Business Recommendations</a></li>
-  <li><a href="#tools">10. Tools & Skills Demonstrated</a></li>
+  <li><a href="#insights">7. Key Insights</a></li>
+  <li><a href="#recommendations">8. Business Recommendations</a></li>
+  <li><a href="#tools">9. Tools & Skills Demonstrated</a></li>
 </ul>
 
 <hr>
