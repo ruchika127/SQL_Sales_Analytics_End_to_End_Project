@@ -15,12 +15,28 @@ following real-world data warehousing and analytics best practices.
 
 <h2>📁 Repository Structure</h2>
 <pre>
-Sql/
- ├── Raw_dataset/
- ├── 01_Clean_Layer_ddl.sql
- ├── 02_Data_Cleaning_etl.sql
- ├── 03_Modelling_Views.sql
- └── 04_EDA_insights.sql
+SQL_Sales_Analytics_End_to_End_Project/
+│
+├── datasets/
+│   ├── crm_customers_raw.csv
+│   ├── crm_products_raw.csv
+|   ├── crm_sales_raw.csv
+|   ├── erp_category_raw.csv
+|   ├── erp_customer_raw.csv
+│   └── erp_location_raw.csv
+│
+├── Scripts/
+│   ├── 01_Clean_Layer_ddl.sql
+│   ├── 02_Data_Cleaning_etl.sql
+│   ├── 03_Modelling_Views.sql
+│   └── 04_EDA_insights.sql
+│
+├── diagrams/
+│   ├── Data_flow.png
+│   ├── Star_schema.png
+│
+├── README.md
+└── LICENSE
 </pre>
 
 <h2>🎯 Problem Statement</h2>
@@ -39,8 +55,7 @@ Where is revenue coming from, who is generating it, what is driving churn, and h
 </p>
 
 <h2>3. Dataset & Source Systems</h2>
-<p><em>(Insert data flow diagram here)</em></p>
-
+<p><em>![Data flow Diagram](diagrams/Data_flow.png)</em></p>
 <h3>Source Systems (Raw Tables)</h3>
 <ul>
   <li><strong>CRM:</strong> customer demographics, product, sales</li>
@@ -58,6 +73,8 @@ Data cleaned into 6 tables and further transformed into 3 core analytical views.
 <p>
 Defined standardized clean-layer table structures.
 (<em>See <code>01_Clean_Layer_ddl.sql</code></em>)
+[Clean Layer DDL](sql/01_clean_layer_ddl.sql)
+
 </p>
 
 <h3>4.2 Data Cleaning & ETL</h3>
@@ -69,7 +86,7 @@ Raw data was transformed and loaded into the clean layer.
   <li>Standardized date formats and handled missing values</li>
   <li>Removed duplicates and nulls using validation checks</li>
   <li>Normalized gender and marital status fields</li>
-  <li>Derived sales amount and price fields</li>
+  <li>Derived sales amount field</li>
   <li>Ensured consistent customer and product identifiers</li>
 </ul>
 
@@ -89,7 +106,7 @@ Raw data was transformed and loaded into the clean layer.
   <li><code>dim_products</code></li>
 </ul>
 
-<p><em>(Insert star schema diagram here)</em></p>
+<p><em>![Star schema](diagrams/Star_schema.png)</em></p>
 
 <h2>5. Exploratory Data Analysis</h2>
 <p>(<em>See <code>04_EDA_insights.sql</code></em>)</p>
