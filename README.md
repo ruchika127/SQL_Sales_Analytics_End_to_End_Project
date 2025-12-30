@@ -73,7 +73,7 @@ Data cleaned into 6 tables and further transformed into 3 core analytical views.
 <p>
 Defined standardized clean-layer table structures.
 (<em>See <code>01_Clean_Layer_ddl.sql</code></em>)
-[Clean Layer DDL](sql/01_clean_layer_ddl.sql)
+[Clean Layer DDL](Scripts/01_Clean_Layer_ddl.sql)
 
 </p>
 
