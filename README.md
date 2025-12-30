@@ -1,6 +1,6 @@
 # SQL_Sales_Analytics_End_to_End_Project
 Building a modern data warehouse using mySQL, including ETL, data modeling and advanced analytics with business improvement strategies.
-[link](https://www.youtube.com/watch?v=uvTcd-VlM64)
+
 <h1>📊 Sales Analytics & Customer Intelligence — End-to-End SQL Project</h1>
 
 <h2>1. Project Overview</h2>
@@ -55,7 +55,7 @@ Where is revenue coming from, who is generating it, what is driving churn, and h
 </p>
 
 <h2>3. Dataset & Source Systems</h2>
-![Data flow Diagram](./diagrams/Data_flow.png)
+![Data flow Diagram](./diagrams/Data_flow.jpg)
 <h3>Source Systems (Raw Tables)</h3>
 <ul>
   <li><strong>CRM:</strong> customer demographics, product, sales</li>
@@ -116,7 +116,8 @@ Highlights:
 </p>
 <ul>
   <li>Q. Generate a report that summarizes key business metrics (sales, orders, customers, products).</li>
-  <li>SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
+  <li>
+    ```SELECT 'Dataset Start Date' AS Metric, MIN(order_date) AS Measure_value FROM fact_sales
 UNION ALL
 SELECT 'Dataset End Date', MAX(order_date) FROM fact_sales
 UNION ALL
