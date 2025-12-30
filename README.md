@@ -20,7 +20,7 @@
 
 <hr>
 
-<h2 id="overview">1. Project Overview</h2>
+<h2 id="overview">1️⃣ Project Overview</h2>
 <p>
 A comprehensive end-to-end sales analytics project that transforms raw transactional data from
 CRM and ERP systems into actionable business insights using SQL.
@@ -32,10 +32,27 @@ following real-world data warehousing and analytics best practices.
 
 <hr/>
 
-<h2 id="repo-structure">📁 Repository Structure</h2>
+<h2 id="problem">2️⃣ Problem Statement</h2>
+<p>The business faces challenges in:</p>
+<ul>
+  <li>Understanding revenue concentration and category dependence</li>
+  <li>Identifying high-value customers vs one-time buyers</li>
+  <li>Detecting churn risk early using Recency & Frequency</li>
+  <li>Evaluating product lifecycle and YoY performance</li>
+  <li>Knowing which products drive acquisition vs long-term value</li>
+  <li>Aligning marketing, retention, and product strategy with data</li>
+</ul>
+
+<p><strong>🎯This project answers:</strong><br/>
+Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?
+</p>
+
+<hr/>
+
+<h2 id="repo-structure">3️⃣ Repository Structure</h2>
 
 <pre>
-SQL_Sales_Analytics_End_to_End_Project/
+📁SQL_Sales_Analytics_End_to_End_Project/
 │
 ├── datasets/
 │   ├── raw_crm/
@@ -56,32 +73,17 @@ SQL_Sales_Analytics_End_to_End_Project/
 └── README.md
 </pre>
 
-<hr/>
-
-<h2 id="problem">🎯 Problem Statement</h2>
-<p>The business faces challenges in:</p>
-<ul>
-  <li>Understanding revenue concentration and category dependence</li>
-  <li>Identifying high-value customers vs one-time buyers</li>
-  <li>Detecting churn risk early using Recency & Frequency</li>
-  <li>Evaluating product lifecycle and YoY performance</li>
-  <li>Knowing which products drive acquisition vs long-term value</li>
-  <li>Aligning marketing, retention, and product strategy with data</li>
-</ul>
-
-<p><strong>This project answers:</strong><br/>
-Where is revenue coming from, who is generating it, what is driving churn, and how can growth be made sustainable?
-</p>
 
 <hr/>
 
-<h2 id="dataset">3. Dataset & Source Systems</h2>
+<h2 id="dataset">4️⃣ Dataset & Source Systems</h2>
 <img src="diagrams/Data_flow.png" alt="Data Flow Diagram" width="800"/>
 
 <ul>
   <li><strong>CRM:</strong> Customer demographics, products, sales</li>
   <li><strong>ERP:</strong> Customer, location, category</li>
-  <li>Granularity: Order-line level</li>
+	
+  <p><strong>Granularity:</strong> Order-line level</p>
 </ul>
 
 <p>
@@ -90,12 +92,12 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 
 <hr/>
 
-<h2 id="modeling">4. Data Modelling & Architecture</h2>
+<h2 id="modeling">5️⃣ Data Modelling & Architecture</h2>
 
-<h3>4.1 Clean Layer DDL</h3>
+<h3>5.1 Clean Layer DDL</h3>
 <p><a href="Scripts/01_Clean_Layer_ddl.sql">View SQL</a></p>
 
-<h3>4.2 Data Cleaning ETL</h3>
+<h3>5.2 Data Cleaning ETL</h3>
 <p><a href="Scripts/02_Data_Cleaning_etl.sql">View SQL</a></p>
 <ul>
   <li>Standardized date formats and missing values</li>
@@ -105,7 +107,7 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
   <li>Ensured consistent identifiers</li>
 </ul>
 
-<h3>4.3 Analytical Views</h3>
+<h3>5.3 Analytical Views</h3>
 <p><a href="Scripts/03_Modelling_views.sql">View SQL</a></p>
 <ul>
   <li>Star schema design</li>
@@ -118,7 +120,7 @@ Raw data was cleaned into 6 tables and modeled into 3 analytical views.
 
 <hr/>
 
-<h2 id="eda">5. Exploratory Data Analysis</h2>
+<h2 id="eda">6️⃣ Exploratory Data Analysis (EDA)</h2>
 <p><a href="Scripts/04_EDA_insights.sql">View Full SQL</a></p>
 
 <hr/>
@@ -154,12 +156,12 @@ SELECT 'Total Customers', COUNT(*) FROM dim_customers;
 
 <h3>Q2. How do sales perform over time at yearly and monthly levels? </h3>
 
-```
+```sql
 SELECT
 	YEAR(order_date) AS order_year,
 	SUM(sales_amount) AS total_sales,
-  COUNT(DISTINCT customer_key) AS total_customer,
-  SUM(quantity) AS total_quantity
+	COUNT(DISTINCT customer_key) AS total_customer,
+	SUM(quantity) AS total_quantity
 FROM fact_sales 
 WHERE order_date IS NOT NULL
 GROUP BY YEAR(order_date)
@@ -173,7 +175,7 @@ February is the weakest.</p>
 
 <h3>Q3. Which product categories contribute the most to overall revenue? </h3>
 
-```
+```sql
 WITH category_sales AS (
   SELECT 
   	p.category,
@@ -198,7 +200,7 @@ ORDER BY total_sales DESC;
 
 <h3>Q4. Analyse Churn pattern Using Combined RFM (Recency–Frequency–Monetary) behaviour.</h3>
 
-```
+```sql
 WITH 
 churn_base AS (
 	SELECT 
@@ -242,7 +244,7 @@ contributes the highest revenue, indicating strong spenders slipping away. Activ
 
 <h3>Q5. Which 5 products drive initial customer acquisition across Churn states (Active, At risk, Churned)? </h3>
 
-```
+```sql
 WITH customer_churn AS (
     SELECT
         customer_key,
@@ -303,62 +305,67 @@ ORDER BY churn_status, rnk;
 
 <hr/>
 
-<h2 id="insights">6. Key Insights</h2>
+<h2 id="insights">7️⃣ Key Insights</h2>
 
 <h3>Revenue & Products</h3>
 <ul>
-  <li>🚲 Bikes contribute ~96% of revenue</li>
-  <li>📉 Accessories drive acquisition but minimal revenue</li>
-  <li>📊 2013 peak followed by market-wide decline</li>
+  <li>🚲 Bikes contribute ~96% of total revenue, indicating extreme category dependence on high-ticket products.</li>
+  <li>📉 Accessories and Apparel drive acquisition but contribute marginal revenue despite high product counts.</li>
+  <li>📊 2013 was the strongest year across nearly all products; 2014 shows a broad decline, indicating market contraction rather than product-specific failure.</li>
 </ul>
 
 <h3>Customers</h3>
 <ul>
-  <li>👥 ~85% customers are New; ~9% VIP</li>
+  <li>👥 Revenue is highly concentrated: ~85% of customers are New buyers, but only ~9% become VIPs.</li>
   <li>💎 VIPs generate revenue comparable to all New buyers</li>
   <li>🔁 62% one-time buyers</li>
 </ul>
 
 <h3>Churn & Retention</h3>
 <ul>
-  <li>⚠️ At-Risk customers = top win-back opportunity</li>
+  <li>⚠️ At-Risk customers generate the highest total revenue, but show declining engagement — making them the top win-back opportunity.</li>
   <li>🔒 Active customers are stable but few</li>
   <li>🎯 Churn is behavioral, not value-driven</li>
 </ul>
 
 <h3>Acquisition & Cohorts</h3>
 <ul>
-  <li>📈 Acquisition surged in 2012–13</li>
+  <li>📈 Customer acquisition surged in 2012–2013, but retention did not scale.</li>
   <li>🔄 Seasonal retention recovery (Jul, Aug, Dec)</li>
-  <li>🧩 Hybrid customer base: mass buyers + enthusiasts</li>
+  <li>🧩 Hybrid customer base: one-time mass buyers + loyal enthusiasts</li>
 </ul>
 
 <h3>Product–Customer Interaction</h3>
 <ul>
-  <li>🧲 Low-cost accessories dominate acquisition</li>
-  <li>💰 High-priced bikes are one-time purchases</li>
-  <li>🔄 Repeat purchases are rare</li>
+  <li>🧲 Low-cost accessories dominate customer acquisition, but conversion into long-term value is weak.</li>
+  <li>💰 High-priced bikes are mostly one-time purchases but drive revenue — highlighting a cross-sell opportunity gap.</li>
+  <li>🔄 Repeat purchases are rare across most products.</li>
 </ul>
 
 <hr/>
 
-<h2 id="recommendations">7. Business Recommendations</h2>
+<h2 id="recommendations">8️⃣ Business Recommendations</h2>
 <ul>
-  <li>Target At-Risk high-value customers with win-back campaigns</li>
-  <li>Build upsell paths from accessories to bikes</li>
+  <li>Prioritize win-back campaigns for At-Risk high-value customers</li>
+  <li>Build structured upsell paths from low-cost entry products</li>
   <li>Improve onboarding for new customers</li>
-  <li>Optimize product portfolio</li>
+  <li>Rationalize low-performing products to improve margins</li>
   <li>Invest in VIP & loyalty programs</li>
 </ul>
 
 <hr/>
 
-<h2 id="skills">8. Tools & Skills Demonstrated</h2>
+<h2 id="skills">9️⃣ Tools & Skills Demonstrated</h2>
 <ul>
-  <li>MySQL</li>
-  <li>CTEs & Window Functions</li>
-  <li>Star Schema Design</li>
+  <li>SQL (mySQL)</li>
+  <li>CTEs, Window Functions, Complex joins, CASE, Aggregations</li>
+  <li>Data Warehousing & Star Schema Design</li>
   <li>Time-Series Analysis</li>
   <li>RFM & Cohort Analysis</li>
   <li>Business-Focused EDA</li>
+  <li>KPI & Metric Engineering</li>
 </ul>
+
+<hr>
+
+<p><b>⭐ If you like this project, feel free to star the repository!</b></p>
