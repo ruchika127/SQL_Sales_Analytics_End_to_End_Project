@@ -192,7 +192,7 @@ ORDER BY total_sales DESC;
 ```
 <p>Result:</p>
 <img src="diagrams/query_results/Q3.png" width="400"/>
-<p><strong>Insight:</strong> <em>Category "Bikes" dominates revenue 96.46% (~28.3M EUR). This creates both opportunity (focus on best-sellers) and risk (high category concentration).<em></p>
+<p><strong>Insight:</strong> <em>Category "Bikes" dominates revenue 96.46% (~28.3M EUR). This creates both opportunity (focus on best-sellers) and risk (high category concentration).</em></p>
 
 <hr/>
 
@@ -237,7 +237,7 @@ churn_base AS (
 <p>Result:</p>
 <img src="diagrams/query_results/Q4.png" width="700"/>
 <p><strong>Insight:</strong><em> Churn is extremely low. Most customers are New + One-Time buyers, while the At-Risk + Occasional segment 
-contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</em>em></p>
+contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</em></p>
 
 <hr/>
 
