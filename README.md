@@ -165,8 +165,8 @@ ORDER BY YEAR(order_date);
 ```
 <p>Result:</p>
 <img src="diagrams/query_results/Q2.png" width="340"/>
-<p><strong>Insight:</strong> 2013 peaks; 2014 decline due to early data cutoff. December shows holiday seasonality while
-February is the weakest.</p>
+<p><strong>Insight:</strong> <em>2013 peaks; 2014 decline due to early data cutoff. December shows holiday seasonality while
+February is the weakest.</em></p>
 
 <hr/>
 
@@ -192,7 +192,7 @@ ORDER BY total_sales DESC;
 ```
 <p>Result:</p>
 <img src="diagrams/query_results/Q3.png" width="400"/>
-<p><strong>Insight:</strong> Category "Bikes" dominates revenue 96.46% (~28.3M EUR). This creates both opportunity (focus on best-sellers) and risk (high category concentration)</p>
+<p><strong>Insight:</strong> <em>Category "Bikes" dominates revenue 96.46% (~28.3M EUR). This creates both opportunity (focus on best-sellers) and risk (high category concentration).<em></p>
 
 <hr/>
 
@@ -236,8 +236,8 @@ churn_base AS (
 ```
 <p>Result:</p>
 <img src="diagrams/query_results/Q4.png" width="700"/>
-<p><strong>Insight:</strong> Churn is extremely low. Most customers are New + One-Time buyers, while the At-Risk + Occasional segment 
-contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</p>
+<p><strong>Insight:</strong><em> Churn is extremely low. Most customers are New + One-Time buyers, while the At-Risk + Occasional segment 
+contributes the highest revenue, indicating strong spenders slipping away. Active customers remain the most stable group, but loyal customers are rare — highlighting retention as the biggest opportunity area.</em>em></p>
 
 <hr/>
 
@@ -300,7 +300,7 @@ ORDER BY churn_status, rnk;
 ```
 <p>Result:</p>
 <img src="diagrams/query_results/Q5.png" width="450"/>
-<p><strong>Insight:</strong> Classic “entry funnel” behavior, Low-cost accessories (e.g., Water Bottle – 30 oz., Tire Tubes, Patch Kits) are the strongest acquisition drivers for Active and At-Risk customers but fail to retain them long-term, while high-priced bikes primarily attract one-time buyers who quickly churn.
+<p><strong>Insight:</strong> <em>Classic “entry funnel” behavior, Low-cost accessories (e.g., Water Bottle – 30 oz., Tire Tubes, Patch Kits) are the strongest acquisition drivers for Active and At-Risk customers but fail to retain them long-term, while high-priced bikes primarily attract one-time buyers who quickly churn.</em>
 </p>
 
 <hr/>
