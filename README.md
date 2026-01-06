@@ -144,7 +144,7 @@ SELECT 'Total Products', COUNT(DISTINCT product_key) FROM dim_products
 UNION ALL
 SELECT 'Total Customers', COUNT(*) FROM dim_customers;
 ```
-
+<p>Result:</p>
 <img src="diagrams/query_results/Q1.png" width="230"/>
 <p><strong>Insight:</strong> Dataset spans 36 months with ~18.5K customers and €29.3M in sales.</p>
 
