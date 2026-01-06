@@ -3,15 +3,15 @@
 
 <h2 id="toc">📌 Table of Contents</h2>
 <ul>
-  <li><a href="#overview">1. Project Overview</a></li>
-  <li><a href="#problem">2. Problem Statement</a></li>
-  <li><a href="#repository">3. Repository Structure</a></li>
-  <li><a href="#dataset">4. Dataset & Source Systems</a></li>
-  <li><a href="#modeling">5. Data Modelling & Architecture</a></li>
-  <li><a href="#eda">6. Exploratory Data Analysis (EDA)</a></li>
-  <li><a href="#insights">7. Key Insights</a></li>
-  <li><a href="#recommendations">8. Business Recommendations</a></li>
-  <li><a href="#tools">9. Tools & Skills Demonstrated</a></li>
+  <li><a href="#overview"> Project Overview</a></li>
+  <li><a href="#problem"> Problem Statement</a></li>
+  <li><a href="#repository"> Repository Structure</a></li>
+  <li><a href="#dataset"> Dataset & Source Systems</a></li>
+  <li><a href="#modeling"> Data Modelling & Architecture</a></li>
+  <li><a href="#eda"> Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#insights"> Key Insights</a></li>
+  <li><a href="#recommendations"> Business Recommendations</a></li>
+  <li><a href="#tools"> Tools & Skills Demonstrated</a></li>
 </ul>
 
 <hr>
