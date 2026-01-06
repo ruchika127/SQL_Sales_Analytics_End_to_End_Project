@@ -364,8 +364,9 @@ ORDER BY churn_status, rnk;
 
 <hr>
 
-<p><b>⭐ <p>
+<p><b>⭐ If you like this project, feel free to star the repository!</b></p>
+<p>
 Learning reference: <a href="https://www.youtube.com/@DataWithBaraa" target="_blank">
 Data with Baraa</a>
 </p>
-If you like this project, feel free to star the repository!</b></p>
+
